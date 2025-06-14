@@ -31,7 +31,7 @@ ocr_response = client.ocr.process(
     model="mistral-ocr-latest",
     document={
         "type": "document_url",
-        "document_url": "https://arxiv.org/pdf/2201.04234"
+        "document_url": "https://ncert.nic.in/textbook/pdf/lebo104.pdf"
     },
     include_image_base64=True
 )
@@ -45,7 +45,7 @@ def export_image(images):
     with open(image.id, "wb") as image_file:
         image_file.write(parsed_image)
 
-with open("output.md", "w") as file:
+with open("digital_notes.md", "w") as file:
   for page in ocr_response.pages:
     file.write(page.markdown)
     for image in page.images:
