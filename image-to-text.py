@@ -9,7 +9,7 @@ dotenv.load_dotenv()
 MISTRAL_API_KEY = os.getenv("MISTRAL_KEY")
 client = Mistral(api_key=MISTRAL_API_KEY)
 
-IMAGE_PATH = "note2.jpg"
+IMAGE_PATH = "note1.jpg"
 image_file = Path(IMAGE_PATH)
 
 if not image_file.is_file():

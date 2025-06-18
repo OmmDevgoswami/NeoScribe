@@ -10,7 +10,7 @@ client = Mistral(api_key = MISTRAL_API_KEY)
 # uploaded_pdf = client.files.upload(
 #     file={
 #         "file_name": "uploaded_file.pdf",
-#         "content": open("/content/Omm_Devgoswami_Resume_2025.pdf", "rb"),
+#         "content": open("EMAI - After midsem.pdf", "rb"),
 #     },
 #     purpose="ocr"
 # )  
@@ -18,7 +18,7 @@ client = Mistral(api_key = MISTRAL_API_KEY)
 # print("File uploaded successfully:", uploaded_pdf.id)
 # file_url = client.files.get_signed_url(file_id = uploaded_pdf.id)
 
-# response = client.ocr.process(
+# ocr_response = client.ocr.process(
 #     model = "mistral-ocr-latest",
 #     document = {
 #         "type" :"document_url",
@@ -31,7 +31,7 @@ ocr_response = client.ocr.process(
     model="mistral-ocr-latest",
     document={
         "type": "document_url",
-        "document_url": "https://ncert.nic.in/textbook/pdf/lebo104.pdf"
+        "document_url": "https://educasia.org/wp-content/uploads/Atoms-and-Molecules-Students-book.pdf"
     },
     include_image_base64=True
 )
@@ -45,8 +45,10 @@ def export_image(images):
     with open(image.id, "wb") as image_file:
         image_file.write(parsed_image)
 
-with open("digital_notes.md", "w") as file:
+with open("digital_notes.md", "w", encoding="utf-8") as file:
   for page in ocr_response.pages:
     file.write(page.markdown)
     for image in page.images:
-        export_image(image)
+      export_image(image)
+
+print("digital_notes.md created successfully with OCR results.")
